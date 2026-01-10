@@ -53,22 +53,37 @@ document.querySelectorAll(".reveal-item").forEach((el) => {
 
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
+const navLinks = document.querySelectorAll(".nav-link");
 
 if (hamburger) {
   hamburger.addEventListener("click", function () {
     if (navMenu.style.display === "flex") {
       navMenu.style.display = "none";
+      document.body.style.overflow = "auto";
     } else {
       navMenu.style.display = "flex";
-      navMenu.style.position = "absolute";
-      navMenu.style.top = "100%";
+      navMenu.style.position = "fixed";
+      navMenu.style.top = "60px";
       navMenu.style.left = "0";
       navMenu.style.right = "0";
+      navMenu.style.width = "100%";
       navMenu.style.flexDirection = "column";
       navMenu.style.gap = "0";
-      navMenu.style.background = "rgba(10, 14, 39, 0.98)";
+      navMenu.style.background = "rgba(10, 14, 39, 0.99)";
       navMenu.style.borderTop = "1px solid var(--border-color)";
+      navMenu.style.zIndex = "998";
+      navMenu.style.maxHeight = "calc(100vh - 60px)";
+      navMenu.style.overflowY = "auto";
+      document.body.style.overflow = "hidden";
     }
+  });
+
+  // Close menu when a link is clicked
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      navMenu.style.display = "none";
+      document.body.style.overflow = "auto";
+    });
   });
 }
 
